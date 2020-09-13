@@ -3,22 +3,29 @@
     <div class="options">
       <router-link to="/new" class="options__btn-add">Добавить</router-link>
     </div>
-    <div class="boards">
-      <Board v-for="board in allBoards" :key="board.id" :board="board"/>
-    </div>
+    <draggable v-model="boardsList" v-bind="{animation: 150}" class="boards">
+      <Board v-for="board in boardsList" :key="board.id" :board="board"/>
+    </draggable>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import draggable from 'vuedraggable'
 import Board from '@/components/Board'
 
 export default {
   components: {
-    Board
+    Board, draggable
   },
   computed: {
-    ...mapGetters(['allBoards'])
+    boardsList: {
+      get() {
+        return this.$store.state.boards.boards
+      },
+      set(value) {
+        this.$store.commit('updateBoards', value)
+      }
+    }
   }
 }
 </script>

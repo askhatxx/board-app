@@ -27,6 +27,10 @@ export default {
   border-radius: 10px;
   padding: 10px;
   position: relative;
+  cursor: move;
+}
+.sortable-ghost {
+  background: #F5D0C4;
 }
 .board-item__title {
   margin-bottom: 10px;
@@ -54,11 +58,16 @@ export default {
   display: inline-block;
   width: 16px;
   height: 16px;
+  transition: .1s;
+  opacity: .5;
+}
+.board-item__btn-del-icon:hover {
+  opacity: 1;
 }
 .board-item__btn-del-icon::before,
 .board-item__btn-del-icon::after {
   content: '';
-  background: #777777;
+  background: #444444;
   display: block;
   width: 100%;
   height: 10%;
